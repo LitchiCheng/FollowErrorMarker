@@ -21,6 +21,10 @@ class MarkFollowError:
 
     def appendData2(self, data2):
         self.data2 += data2
+    
+    def clearAllData(self):
+        self.data1.clear()
+        self.data2.clear()
 
     def _freshErrorFlag(self):
         self.__error_flag.clear()
@@ -101,18 +105,19 @@ class PlotFollowError(MarkFollowError):
     def show(self):
         plt.show()
 
-x = range(0,200)
-y = []
-y_r = []
-for i in x:
-    y.append(sin(i) + np.random.normal(0,0.8)) 
-    y_r.append(sin(i))
+if __name__ == "__main__":
+    x = range(0,200)
+    y = []
+    y_r = []
+    for i in x:
+        y.append(sin(i) + np.random.normal(0,0.8)) 
+        y_r.append(sin(i))
 
-test = PlotFollowError()
-test.setError(0.1)
-test.setWindow(5)
-test.appendData1(y)
-test.appendData2(y_r)
-test.plotCurve()
-test.markFollowError()
-test.show()
+    test = PlotFollowError()
+    test.setError(0.5)
+    test.setWindow(5)
+    test.appendData1(y)
+    test.appendData2(y_r)
+    test.plotCurve()
+    test.markFollowError()
+    test.show()
